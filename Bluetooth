@@ -1,0 +1,68 @@
+
+ 
+String datain;
+
+int x,y=0;
+
+
+#define relay1 5
+#define relay2 4
+ 
+
+int flag = 0;       
+
+void setup ( )
+{
+  Serial.begin (9600);
+
+  pinMode (relay1, OUTPUT);
+  pinMode (relay2, OUTPUT);
+  digitalWrite(relay1,LOW);
+  digitalWrite(relay2,LOW);
+   
+  
+  
+}
+
+void loop ( ) {
+ 
+  while (Serial.available()){  //Check if there is an available byte to read
+  delay(10); //Delay added to make thing stable 
+  char c = Serial.read(); //Conduct a serial read
+  if (c == '#') {break;} //Exit the loop when the # is detected after the word
+  datain += c; //Shorthand for datain = datain + c
+  Serial.println(c);
+    if (datain.length() > 0) {
+   
+  if(datain=="1"){Serial.println("FWD");fanOn();  }
+  if(datain=="2"){Serial.println("Back");fanOff(); }
+  if(datain=="3"){Serial.println("Left");pumpOn(); }
+  if(datain=="4"){Serial.println("Right");pumpOff(); }
+  
+    datain="";}
+   }
+      
+  
+}
+void fanOn()
+{
+   digitalWrite(relay1,HIGH);
+   
+   
+}
+void fanOff()
+{
+   digitalWrite(relay1,LOW);
+   
+}
+void pumpOn()
+{
+   digitalWrite(relay2,HIGH);
+   
+   
+}
+void pumpOff()
+{
+   digitalWrite(relay2,LOW);
+   
+}
