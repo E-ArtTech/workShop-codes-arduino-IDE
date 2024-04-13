@@ -1,19 +1,19 @@
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
 #define Relay1            D1
 
 
-#define WLAN_SSID       "   ----   "             // Your SSID
-#define WLAN_PASS       "  ----  "        // Your password
+#define WLAN_SSID       "SSID"             // Your SSID
+#define WLAN_PASS       "PASS"        // Your password
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com" //Adafruit Server
 #define AIO_SERVERPORT  1883                  
-#define AIO_USERNAME    "   -----   "            // Username
-#define AIO_KEY         "      ------------      "   // Auth Key
+#define AIO_USERNAME    "USER Name"            // Username
+#define AIO_KEY         "Aio Key"   // Auth Key
 
 //WIFI CLIENT
 WiFiClient client;
