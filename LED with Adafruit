@@ -2,7 +2,7 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
-#define Relay1            D1
+#define Relay1            4
 
 
 #define WLAN_SSID       "SSID"             // Your SSID
