@@ -1,0 +1,62 @@
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run 'make menuconfig' to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+
+String datain;
+
+int x,y=0;
+
+
+#define relay1 5
+#define relay2 4
+ 
+
+int flag = 0;       
+
+void setup ( )
+{
+  Serial.begin (9600);
+  SerialBT.begin ("ESP32BT");
+
+  pinMode (relay1, OUTPUT);
+  pinMode (relay2, OUTPUT);
+  digitalWrite(relay1,LOW);
+  digitalWrite(relay2,LOW);
+   
+  
+  
+}
+
+void loop ( ) {
+ 
+  while (SerialBT.available()){  //Check if there is an available byte to read
+  delay(10); //Delay added to make thing stable 
+   c = SerialBT.read(); //Conduct a serial read
+  //if (c == '#') {break;} //Exit the loop when the # is detected after the word
+  datain += c; //Shorthand for datain = datain + c
+  Serial.println(c);
+    if (datain.length() > 0) {
+   
+  if(datain=="hello"){Serial.println("Light ON");lightOn();  }
+  if(datain=="LED on"){Serial.println("Light OFF");lightOff(); }
+
+    datain="";}
+   }
+      
+  
+}
+void lightOn()
+{
+   digitalWrite(relay1,HIGH);
+   
+   
+}
+void lightOff()
+{
+   digitalWrite(relay1,LOW);
+   
+}
