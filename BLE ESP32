@@ -7,14 +7,8 @@
 BluetoothSerial SerialBT;
 
 String datain;
-
 int x,y=0;
-
-
 #define relay1 5
-#define relay2 4
- 
-
 int flag = 0;       
 
 void setup ( )
@@ -23,19 +17,14 @@ void setup ( )
   SerialBT.begin ("ESP32BT");
 
   pinMode (relay1, OUTPUT);
-  pinMode (relay2, OUTPUT);
-  digitalWrite(relay1,LOW);
-  digitalWrite(relay2,LOW);
-   
-  
-  
+  digitalWrite(relay1,LOW); 
 }
 
 void loop ( ) {
  
   while (SerialBT.available()){  //Check if there is an available byte to read
   delay(10); //Delay added to make thing stable 
-   c = SerialBT.read(); //Conduct a serial read
+  char c = SerialBT.read(); //Conduct a serial read
   //if (c == '#') {break;} //Exit the loop when the # is detected after the word
   datain += c; //Shorthand for datain = datain + c
   Serial.println(c);
@@ -46,17 +35,12 @@ void loop ( ) {
 
     datain="";}
    }
-      
-  
 }
 void lightOn()
 {
    digitalWrite(relay1,HIGH);
-   
-   
 }
 void lightOff()
 {
    digitalWrite(relay1,LOW);
-   
 }
